@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Stockmanagement</title>
+		<%= csrf_meta_tags %>
+		<%= csp_meta_tag %>
+
+	<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<%= render 'layouts/navbar' %>
+			<%= render 'layouts/sidebar' %>
+			<div class="content-wrapper">
+				<%= yield %>
+			</div>
+		</div>
+	</body>
+</html>
