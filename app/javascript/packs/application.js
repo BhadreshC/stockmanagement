@@ -10,6 +10,12 @@ require("channels")
 require("jquery")
 
 require("bootstrap_bundle")
+require("sparkline")
+require("adminlte")
+require("dashboard")
+
+
+
 
 // require("jquery")
 // Uncomment to copy all static images under ../images to the output folder and reference
