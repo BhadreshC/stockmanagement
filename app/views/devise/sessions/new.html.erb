@@ -1,18 +1,46 @@
-
-							<%= link_to "Store", root_path, class: "text-center" %>
-							<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "mt-5 mb-5 login-input"}) do |f| %>
-								<div class="form-group"><br />
-									<%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Email", class: "form-control" %>
-								</div>
-
-								<div class="form-group">
-									<%= f.password_field :password, autocomplete: "current-password", placeholder:"password", class: "form-control"%>
-								</div>
-
-								<div class="form-group">
-									<%= f.submit "Sign In", class: "btn login-form__btn submit w-100" %>
-								</div>
-							<% end %>
-							<%= render "devise/shared/links",class: "mt-5 login-form__footer" %> 
-							<%#= links "Sign up", user_registration_path, class:"text-primary" %>
-							<!-- <p class="mt-5 login-form__footer">Dont have account? <a href="page-register.html" class="text-primary">Sign Up</a> now</p> -->
+<div class="hold-transition login-page">
+	<div class="login-box">
+	  <div class="login-logo">
+			<%= link_to "LOGIN", new_user_session_path %>
+	  </div>
+	  <div class="card">
+	    <div class="card-body login-card-body">
+	      <p class="login-box-msg">Sign in to start your session</p>
+				<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "mt-5 mb-5 login-input"}) do |f| %>
+	        <div class="input-group mb-3">
+						<%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Email", class: "form-control", required: true %>
+	          <div class="input-group-append">
+	            <div class="input-group-text">
+	              <span class="fas fa-envelope"></span>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="input-group mb-3">
+						<%= f.password_field :password, autocomplete: "current-password", placeholder:"password", class: "form-control", required: true%>
+	          <div class="input-group-append">
+	            <div class="input-group-text">
+	              <span class="fas fa-lock"></span>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="row">
+	          <div class="col-8">
+	            <div class="icheck-primary">
+								<% if devise_mapping.rememberable? %>
+									<%= f.check_box :remember_me %>
+									<%= f.label :remember_me %>
+								<% end %>
+	            </div>
+	          </div>
+	          <div class="col-4">
+							<%= f.submit "Sign In", class: "btn btn-primary btn-block" %>
+	          </div>
+	        </div>
+	      <% end %>
+	      <p class="mb-1">
+					<%= render "devise/shared/links",class: "mt-5 login-form__footer" %>
+	      </p>
+	    </div>
+	  </div>
+	</div>
+</div>
