@@ -1,0 +1,26 @@
+<h1 align="center">All Users</h1>
+<table align="center">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Mobile No.</th>
+			<th>status</th>&nbsp;
+			<th colspan="3">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+			<tr>
+				<td><%= user.name %></td>
+				<td><%= user.email %></td>
+				<td><%= user.MobileNo %></td>
+				<td><%= user.status%></td>
+				<td><%#= link_to 'Show', store_user_path(@store, user) %></td>
+				<td><%#= link_to 'Edit', edit_store_user_path(@store, user) %></td>
+				<td><%#= link_to 'Destroy', store_user_path(@store, user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<%= link_to "Create New user", store_new_user_path(@store) %>

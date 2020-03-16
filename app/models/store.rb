@@ -1,7 +1,7 @@
 class Store < ApplicationRecord
 	has_many :users, dependent: :destroy
 	before_create :default_slug
-
+	accepts_nested_attributes_for :users
 	def default_slug
 		o = [('a'..'z'), ('A'..'Z'),(0..9)].map(&:to_a).flatten
 		str = (0..5).map { o[rand(o.length)] }.join

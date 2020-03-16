@@ -1,3 +1,37 @@
 class UsersController < ApplicationController
-	belongs_to :store
-end
+	before_action :set_user, only: [:show, :edit, :update, :destroy]
+	before_action :set_store
+	def index
+		@users = @store.users
+	end
+	def new
+		@user= @store.users.new
+	end
+
+	def create
+		@user = @store.users.new(user_params)
+		respond_to do |format|
+			if @user.save
+				session[:user_id] = @user.id
+				format.html { redirect_to store_path(@store), notice: "Confirmation mail has been sended to the #{@user.email },Please confim the mail after you can login " }
+				format.json { render :show, status: :created, location: @user }
+			else
+				format.html { render :new }
+				format.json { render json: @user.errors, status: :unprocessable_entity }
+			end
+		end
+	end
+
+	private
+		def set_store
+			@store = Store.find_by(id: params[:store_id])
+		end
+
+		def set_user
+			@user = User.find_by(id: params[:id])
+		end
+
+		def user_params
+			params.require(:user).permit(:name, :email, :password, :password_confirmation, :MobileNo, :gender)
+		end
+	end
