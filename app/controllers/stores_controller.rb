@@ -3,13 +3,13 @@ class StoresController < ApplicationController
 	# before_action :check_session
 
 	def index
-		redirect_to root_url
+		redirect_to root_path
 	end
 
 	def show
 	end
 	private
 		def set_store
-			@store = Store.find_by(id: params[:id]) or not_found
+			@store = Store.find_by_slug(params[:slug]) or not_found
 		end
 end

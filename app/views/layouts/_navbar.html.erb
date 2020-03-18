@@ -1,24 +1,27 @@
-	<nav class="main-header navbar navbar-expand navbar-white navbar-light">
-		<ul class="navbar-nav">
-			<li class="nav-item">
-				<a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-			</li>
-			<li class="nav-item d-none d-sm-inline-block">
-				<%= link_to "Home", store_path(@store), class: "nav-link" %>
-			</li>
-			<li class="nav-item d-none d-sm-inline-block">
-				<%= link_to "New Product", store_path(@store), class: "nav-link" %>
-			</li>
-			<li class="nav-item d-none d-sm-inline-block">
-				<%= link_to "Orders", store_path(@store), class: "nav-link" %>
-			</li>
-			<li class="nav-item d-none d-sm-inline-block">
-				<%= link_to "Users", store_users_path(@store), class: "nav-link" %>
-			</li>
-			<li class="nav-item d-none d-sm-inline-block">
-				<%= link_to "Customers", store_path(@store), class: "nav-link" %>
-			</li>
-			</ul>
-			<%= link_to "Sign out", destroy_user_session_path, data: {confirm: 'Are you sure?'}, method: :delete %>
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+	<ul class="navbar-nav">
+		<li class="nav-item">
+			<a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+		</li>
+		<li class="nav-item d-none d-sm-inline-block">
+			<%= link_to "Home", store_path(@store), class: "nav-link" %>
+		</li>
+		<li class="nav-item d-none d-sm-inline-block">
+			<%= link_to "New Product", store_path(@store), class: "nav-link" %>
+		</li>
+		<li class="nav-item d-none d-sm-inline-block">
+			<%= link_to "Orders", store_path(@store), class: "nav-link" %>
+		</li>
+		<li class="nav-item d-none d-sm-inline-block">
+			<%= link_to "Users", store_users_path(@store), class: "nav-link" %>
+		</li>
+		<li class="nav-item d-none d-sm-inline-block">
+			<%= link_to "Customers", store_path(@store), class: "nav-link" %>
+		</li>
+		<li class="nav-item d-none d-sm-inline-block">
+			<%= link_to "Log out", destroy_user_session_path, data: {confirm: 'Are you sure?'}, method: :delete, class: "nav-link"%>
+		</li>
 		</ul>
-	</nav>
+		
+	</ul>
+</nav>

@@ -1,17 +1,18 @@
 class ApplicationController < ActionController::Base
 	rescue_from ActionController::RoutingError, with: :render_404
 	rescue_from ActiveRecord::RecordNotFound, with: :render_404
-  #before_action :configure_permitted_parameters, if: :devise_controller?
-  protect_from_forgery with: :exception
   before_action :authenticate_user!
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  protect_from_forgery with: :exception
 
 	layout :layout_by_resource
-  protected
-#     def configure_permitted_parameters
-# 			devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation)}
-# 			devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :email, :password, :current_password)}
-#   	end
-  def after_sign_in_path_for(resource)
+	protected
+	def configure_permitted_parameters
+			devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation, :MobileNo, store_attributes: [:id, :name])}
+			devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :email, :password, :current_password)}
+	end
+
+	def after_sign_in_path_for(resource)
 		if resource.status == true
 			@store= current_user.store
 			stored_location_for(resource) || store_path(@store)
@@ -41,5 +42,3 @@ class ApplicationController < ActionController::Base
 		raise ActionController::RoutingError.new('Not Found')
 	end
 end
-
-

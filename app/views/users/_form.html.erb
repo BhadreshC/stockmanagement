@@ -6,8 +6,9 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">General Form</li>
+              <li class="breadcrumb-item"><%= link_to "Home", store_path(@store) %></li>
+              <li class="breadcrumb-item"><%= link_to 'users', store_users_path(@store) %> </li>
+              <li class="breadcrumb-item active">new User</li>
             </ol>
           </div>
         </div>
@@ -45,7 +46,7 @@
                   </div>
                   <div class="form-group">
                     <%= f.label :MobileNo %><br />
-										<%= f.text_field :MobileNo, autofocus: true,required: true, class: "form-control",placeholder: "Enter MobileNo" %>
+										<%= f.telephone_field :MobileNo, autofocus: true,required: true, class: "form-control",placeholder: "xxx-xxx-xxxx" %>
                   </div>
 									<div class="form-group">
                     <%= f.label :password %><br />

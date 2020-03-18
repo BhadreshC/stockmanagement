@@ -1,26 +1,102 @@
-<h1 align="center">All Users</h1>
-<table align="center">
-	<thead>
-		<tr>
-			<th>Name</th>
-			<th>Email</th>
-			<th>Mobile No.</th>
-			<th>status</th>&nbsp;
-			<th colspan="3">Actions</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @users.each do |user| %>
-			<tr>
-				<td><%= user.name %></td>
-				<td><%= user.email %></td>
-				<td><%= user.MobileNo %></td>
-				<td><%= user.status%></td>
-				<td><%#= link_to 'Show', store_user_path(@store, user) %></td>
-				<td><%#= link_to 'Edit', edit_store_user_path(@store, user) %></td>
-				<td><%#= link_to 'Destroy', store_user_path(@store, user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
-<%= link_to "Create New user", store_new_user_path(@store) %>
+<section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Users</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><%= link_to "Home", store_path(@store) %></li>
+              <li class="breadcrumb-item active">users</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title"> List of Users</h3>&nbsp;
+          <%= link_to "<button type='button', class= 'btn btn-primary'>Create new user</button>".html_safe, store_new_user_path(@store) %>
+          <%#= link_to "Create New user", store_new_user_path(@store) %>
+          <%= link_to "<button type='button', class= 'btn btn-primary'>Back</button>".html_safe, store_path(@store) %>
+					<%#= link_to "Back", store_path(@store) %>
+          <div class="card-tools">
+
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <table class="table table-striped projects">
+              <thead>
+                  <tr>
+                      <th style="width: 1%">
+                          Sr.No.
+                      </th>
+                      <th style="width: 20%">
+                          Name
+                      </th>
+                      <th style="width: 30%">
+                          Email
+                      </th>
+                      <th>
+                          Mobile No.
+                      </th>
+                      <th style="width: 8%" class="text-center">
+                          Status
+                      </th>
+                      <th style="width: 20%">
+                      	Actions
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+              	<% @users.each_with_index do |user, i| %>
+
+                  <tr>
+                      <td>
+                           <%= i+1 %>
+                      </td>
+                      <td>
+                          <a>
+                           <%= user.name %>
+                          </a>
+                          <br/>
+                          <small>
+                              <%= user.created_at %>
+                          </small>
+                      </td>
+                      <td>
+                         <%= user.email %>
+                      </td>
+                      <td class="project_progress">
+                      	<%= user.MobileNo %>
+                      </td>
+                      <td class="project-state">
+                    		<% if user.status == true %>
+                    			<span class="badge badge-success">Active</span>
+                    		<% else %>
+                          <span class="badge badge-dark">Deactive</span>
+                    		<% end %>
+                      </td>
+                      <td class="project-actions text-right">
+                          <a class="btn btn-primary btn-sm" href="#">
+                              View
+                          </a>
+                          <a class="btn btn-info btn-sm" href="#">
+                              Edit
+                          </a>
+                          <%= link_to 'Destroy', store_user_path(@store, user), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm"%>
+                      </td>
+                  </tr>
+                  <% end %>
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <%#= link_to 'Show', store_user_path(@store, user) %>
+				<%#= link_to 'Edit', edit_store_user_path(@store, user) %>
+				<%#= link_to 'Destroy', store_user_path(@store, user), method: :delete, data: { confirm: 'Are you sure?' } %>

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 	# root to: "stores#index"
 	root :to => redirect("/login")
 	# resources :naresh , param: :slug
-	resources :stores do
+	resources :stores, param: :slug do
 		post '/users', to: 'users#create'
 		get '/users/new', to: 'users#new', as: 'new_user'
 		resources :users
