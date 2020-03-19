@@ -1,84 +1,41 @@
 <div class="hold-transition register-page">
-<div class="register-box">
-  <div class="register-logo">
-    <a href="../../index2.html"><b>Create</b> Store</a>
-  </div>
-
-  <div class="card">
-    <div class="card-body register-card-body">
-      <p class="login-box-msg">Create New store</p>
-
-       	<%= form_for(resource, as: resource_name, url: registration_path(resource_name),html: {class: "mt-5 mb-5 login-input"}) do |f| %>
-       	<%= render "devise/shared/error_messages", resource: resource %>
-        <div class="input-group mb-3">
-            <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder:"Full Name ", class: "form-control", required: true %>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-           <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Email", class: "form-control", required: true %>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <% if @minimum_password_length %>
-          <% end %><br />
-          <%= f.password_field :password, autocomplete: "current-password", placeholder:"Password", class: "form-control", required: true%>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"Retype-password", class: "form-control",  required: true%>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <%= f.telephone_field :MobileNo, autofocus: true, autocomplete: "MobileNo", placeholder:"Contact Number ", class: "form-control", required: true %>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-      	</div>
-       <%#= f.fields_for :store do |store| %>
-<!-- 				<div class="input-group mb-3">
-					<%#= f.text_field :name, autofocus: true,  placeholder:"store name ", class: "form-control", required: true %>
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-      	</div>
-      	<%#end %>
- 			 </div>
- -->
-        <div class="row">
-          <div class="col-12">
-          	 <%= f.submit "Register", class: "btn btn-primary btn-block" %>
-          </div>
-        </div>
-      <% end %>
-			<%= render "devise/shared/links",class: "mt-5 login-form__footer" %>
-    </div>
-  </div><!-- /.card -->
+	<div class="register-box">
+	  <div class="card">
+	    <div class="card-body register-card-body">
+	      <p class="login-box-msg">Create New store</p>
+	       	<%#= form_for(resource, as: resource_name, url: registration_path(resource_name),html: {class: "mt-5 mb-5 login-input"}) do |f| %>
+	       	<%#= render "devise/shared/error_messages", resource: resource %>
+					<%= form_for @store, local: true, url: registration_path(resource_name), html: {class: "mt-5 mb-5 login-input"} do |f| %>
+					<% if @store.errors.any? %>
+						<div id="error_explanation">
+							<ul>
+								<% @store.errors.full_messages.each do |message| %>
+									<li><%= message %></li>
+								<%end %>
+							</ul>
+						</div>
+					<% end %>
+						<%= f.fields_for :users do |user| %>
+							<div class="nested-fields">
+								<%= render 'user_fields', f: user  %>
+							</div>
+	        	<% end %>
+						<div class="input-group mb-3">
+			        <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder:"store Name ", class: "form-control", required: true %>
+			          <div class="input-group-append">
+			            <div class="input-group-text">
+			              <span class="fas fa-user"></span>
+			            </div>
+			          </div>
+			      </div>
+	        <div class="row">
+	          <div class="col-12">
+	          	 <%= f.submit "Register", class: "btn btn-primary btn-block" %>
+	          </div>
+	        </div>
+	      <% end %>
+				<%= render "devise/shared/links",class: "mt-4 login-form__footer" %>
+	    </div>
+	  </div>
+	</div>
 </div>
-</div>
-
-
-
-
-
-
-

@@ -1,5 +1,6 @@
 class Store < ApplicationRecord
-	has_many :users, dependent: :destroy, inverse_of: :project
+	has_many :users, dependent: :destroy
+	accepts_nested_attributes_for :users
 	before_create :set_slug
 	def set_slug
 		o = [('a'..'z'), ('A'..'Z'),(0..9)].map(&:to_a).flatten

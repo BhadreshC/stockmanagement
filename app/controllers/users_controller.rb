@@ -36,10 +36,8 @@ class UsersController < ApplicationController
 		def set_user
 			@user = User.find_by(id: params[:id])
 		end
-
-  params.require(:project).permit(:name, :description, tasks_attributes: [:id, :description, :done, :_destroy])
-  end
 		def user_params
-			params.require(:user).permit(:name, :email, :password, :password_confirmation, :MobileNo, :gender, store_attributes: [:id, :name])
+			#params.require(:user).permit(:name, :email, :password, :password_confirmation, store_attributes: [:id, :name])
+			params.require(:user).permit(:name, :email, :password, :password_confirmation)
 		end
 	end

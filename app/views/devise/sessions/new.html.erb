@@ -6,6 +6,9 @@
 	  <div class="card">
 	    <div class="card-body login-card-body">
 	      <p class="login-box-msg">Sign in to start your session</p>
+				<% flash.each do |name, msg| %>
+				  <%= content_tag :div, msg, id: "flash_#{name}" %>
+				<% end %>
 				<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "mt-5 mb-5 login-input"}) do |f| %>
 	        <div class="input-group mb-3">
 						<%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Email", class: "form-control", required: true %>
