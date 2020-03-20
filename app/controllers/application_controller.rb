@@ -8,10 +8,10 @@ class ApplicationController < ActionController::Base
 	protected
 	def configure_permitted_parameters
 			devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, users_attributes: [:name, :email, :password, :password_confirmation])}
-			# devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation, store_attributes: [:id, :name])}
 			devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :email, :password, :current_password)}
 	end
 
+	#redirect path after login
 	def after_sign_in_path_for(resource)
 		if resource.status == true
 			@store= current_user.store
@@ -21,11 +21,9 @@ class ApplicationController < ActionController::Base
 			stored_location_for(resource) || store_path(@store)
 		end
 	end
-	# def after_sign_up_path_for(resource)
-	# 	"www.google.com" 
-	# end 
 
 	private
+	#set layout for devise and application
 	def layout_by_resource
 		if devise_controller?
 			"devise"
@@ -33,6 +31,8 @@ class ApplicationController < ActionController::Base
 			"application"
 		end
 	end
+
+	#method for routing errors
 	def render_404(exception = nil)
 		if exception
 			logger.info "Rendering 404: #{exception.message}"
@@ -40,6 +40,7 @@ class ApplicationController < ActionController::Base
 		render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
 	end
 
+	#method for records not found
 	def not_found
 		raise ActionController::RoutingError.new('Not Found')
 	end

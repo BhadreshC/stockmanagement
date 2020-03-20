@@ -1,73 +1,71 @@
-	<section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>General Form</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><%= link_to "Home", store_path(@store) %></li>
-              <li class="breadcrumb-item"><%= link_to 'users', store_users_path(@store) %> </li>
-              <li class="breadcrumb-item active">new User</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
+<section class="content-header">
+	<div class="container-fluid">
+		<div class="row mb-2">
+			<div class="col-sm-6">
+				<h1>General Form</h1>
+			</div>
+			<div class="col-sm-6">
+				<ol class="breadcrumb float-sm-right">
+					<li class="breadcrumb-item"><%= link_to "Home", store_path(@store) %></li>
+					<li class="breadcrumb-item"><%= link_to 'users', store_users_path(@store) %> </li>
+					<li class="breadcrumb-item active">new User</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
 <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <!-- left column -->
-          <div class="col-md-6">
-            <!-- general form elements -->
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">Add New user</h3>
-              </div>
-              	<%= form_with(model: [@store, user], local: true) do |f| %>
-              	<% if user.errors.any? %>
-									<div id="error_explanation">
-										<h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-										<ul>
-											<% user.errors.full_messages.each do |message| %>
-												<li><%= message %></li>
-											<%end %>
-										</ul>
-									</div>
-								<% end %>
-                <div class="card-body">
-                  <div class="form-group">
-                    <%= f.label :name %><br />
-										<%= f.text_field :name, required: true, placeholder: "Enter name", class: "form-control" %>
-                  </div>
-                  <div class="form-group">
-                    <%= f.label :email %><br />
-										<%= f.email_field :email, autofocus: true, autocomplete: "email",required: true, class: "form-control",placeholder: "Enter Email" %>
-                  </div>
-                  <div class="form-group">
-                    <%= f.label :MobileNo %><br />
-										<%= f.telephone_field :MobileNo, autofocus: true,required: true, class: "form-control",placeholder: "xxx-xxx-xxxx" %>
-                  </div>
-									<div class="form-group">
-                    <%= f.label :password %><br />
-                    <% if @minimum_password_length %>
-											<em>(<%= @minimum_password_length %> characters minimum)</em>
-										<% end %><br />
-                    <%= f.password_field :password, autocomplete: "new-password", required: true , class: "form-control",placeholder: "Enter Password" %>
-                  </div>
-                  <div class="form-group">
-										<%= f.label :password_confirmation %><br />
-										<%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: "form-control",placeholder: "Repeat Password"%>
-                  </div>
-                </div>
-                <div class="card-footer">
-                	<%= f.submit "submit", class: "btn btn-primary"%>
-									<%= button_tag "Reset", type: :reset, class: "btn btn-primary"%>
-                </div>
-              <% end %>
-            </div>
-          </div>
-          </div>
-        </div>
-      </section>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card card-primary">
+					<div class="card-header">
+						<h3 class="card-title">Add New user</h3>
+					</div>
+					<%= form_with(model: [@store, user], local: true) do |f| %>
+						<% if user.errors.any? %>
+							<div id="error_explanation">
+								<h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+								<ul>
+									<% user.errors.full_messages.each do |message| %>
+										<li><%= message %></li>
+									<%end %>
+								</ul>
+							</div>
+						<% end %>
+						<div class="card-body">
+							<div class="form-group">
+								<%= f.label :name %><br />
+								<%= f.text_field :name, required: true, placeholder: "Enter name", class: "form-control" %>
+							</div>
+							<div class="form-group">
+								<%= f.label :email %><br />
+								<%= f.email_field :email, autofocus: true, autocomplete: "email",required: true, class: "form-control",placeholder: "Enter Email" %>
+							</div>
+							<div class="form-group">
+								<%= f.label :MobileNo %><br />
+								<%= f.telephone_field :MobileNo, autofocus: true,required: true, class: "form-control",placeholder: "xxx-xxx-xxxx" %>
+							</div>
+							<div class="form-group">
+								<%= f.label :password %><br />
+								<% if @minimum_password_length %>
+									<em>(<%= @minimum_password_length %> characters minimum)</em>
+								<% end %><br />
+								<%= f.password_field :password, autocomplete: "new-password", required: true , class: "form-control",placeholder: "Enter Password" %>
+							</div>
+							<div class="form-group">
+								<%= f.label :password_confirmation %><br />
+								<%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: "form-control",placeholder: "Repeat Password"%>
+							</div>
+						</div>
+						<div class="card-footer">
+							<%= f.submit "submit", class: "btn btn-primary"%>
+							<%= button_tag "Reset", type: :reset, class: "btn btn-primary"%>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 

@@ -37,7 +37,6 @@ class UsersController < ApplicationController
 			@user = User.find_by(id: params[:id])
 		end
 		def user_params
-			#params.require(:user).permit(:name, :email, :password, :password_confirmation, store_attributes: [:id, :name])
-			params.require(:user).permit(:name, :email, :password, :password_confirmation)
+			params.require(:user).permit(:name, :email, :password, :password_confirmation , :MobileNo)
 		end
 	end

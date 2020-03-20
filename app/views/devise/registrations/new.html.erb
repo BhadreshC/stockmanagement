@@ -1,11 +1,9 @@
 <div class="hold-transition register-page">
 	<div class="register-box">
-	  <div class="card">
-	    <div class="card-body register-card-body">
-	      <p class="login-box-msg">Create New store</p>
-	       	<%#= form_for(resource, as: resource_name, url: registration_path(resource_name),html: {class: "mt-5 mb-5 login-input"}) do |f| %>
-	       	<%#= render "devise/shared/error_messages", resource: resource %>
-					<%= form_for @store, local: true, url: registration_path(resource_name), html: {class: "mt-5 mb-5 login-input"} do |f| %>
+		<div class="card">
+			<div class="card-body register-card-body">
+				<p class="login-box-msg">Create New store</p>
+				<%= form_for @store, local: true, url: registration_path(resource_name), html: {class: "mt-5 mb-5 login-input"} do |f| %>
 					<% if @store.errors.any? %>
 						<div id="error_explanation">
 							<ul>
@@ -15,27 +13,27 @@
 							</ul>
 						</div>
 					<% end %>
-						<%= f.fields_for :users do |user| %>
-							<div class="nested-fields">
-								<%= render 'user_fields', f: user  %>
+					<%= f.fields_for :users do |user| %>
+						<div class="nested-fields">
+							<%= render 'user_fields', f: user  %>
+						</div>
+					<% end %>
+					<div class="input-group mb-3">
+						<%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder:"store Name ", class: "form-control", required: true %>
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-user"></span>
 							</div>
-	        	<% end %>
-						<div class="input-group mb-3">
-			        <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder:"store Name ", class: "form-control", required: true %>
-			          <div class="input-group-append">
-			            <div class="input-group-text">
-			              <span class="fas fa-user"></span>
-			            </div>
-			          </div>
-			      </div>
-	        <div class="row">
-	          <div class="col-12">
-	          	 <%= f.submit "Register", class: "btn btn-primary btn-block" %>
-	          </div>
-	        </div>
-	      <% end %>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<%= f.submit "Register", class: "btn btn-primary btn-block" %>
+						</div>
+					</div>
+				<% end %>
 				<%= render "devise/shared/links",class: "mt-4 login-form__footer" %>
-	    </div>
-	  </div>
+			</div>
+		</div>
 	</div>
 </div>
