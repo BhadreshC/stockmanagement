@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update, :destroy]
 	before_action :set_store
+	#helper_method :change_status_path
 	def index
 		@users = @store.users
 	end
@@ -22,13 +23,24 @@ class UsersController < ApplicationController
 		end
 	end
 	def destroy
-		@user.destroy
 		respond_to do |format|
-			format.html { redirect_to store_users_url, notice: 'User was successfully destroyed.' }
-			format.json { head :no_content }
+			if @user == current_user
+				format.html { redirect_to store_users_url, notice: "Hmmm.... Are you deleting yourself ??!!!!!!!" }
+				format.json { render :show, status: :created, location: @user }
+			else
+				@user.destroy
+					format.html { redirect_to store_users_url, notice: 'User was successfully destroyed.' }
+					format.json { head :no_content }
+			end
 		end
 	end
-
+# 	def change_status
+# 	  if @user.status?
+# 	    @user.update_attribute(:status, false)
+# 	  else
+# 	    @user.update_attribute(:status, true)
+# 	  end 
+# end
 	private
 		def set_store
 			@store = Store.find_by_slug(params[:store_slug]) or not_found

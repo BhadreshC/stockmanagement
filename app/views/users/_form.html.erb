@@ -59,6 +59,7 @@
 							</div>
 						</div>
 						<div class="card-footer">
+							<%= link_to "<button type='button', class= 'btn btn-primary'>Back</button>".html_safe, store_users_path(@store) %>
 							<%= f.submit "submit", class: "btn btn-primary"%>
 							<%= button_tag "Reset", type: :reset, class: "btn btn-primary"%>
 						</div>

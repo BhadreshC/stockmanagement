@@ -1,15 +1,15 @@
-class Store < ApplicationRecord
-	has_many :users, dependent: :destroy
-	has_many :products, dependent: :destroy
-	accepts_nested_attributes_for :users
+class Product < ApplicationRecord
+	belongs_to :store
 	before_create :set_slug
+	validates :title, presence:true
+	validates :description, presence:true
 
 	#gererate default slug before create record
 	def set_slug
 		o = [('a'..'z'), ('A'..'Z'),(0..9)].map(&:to_a).flatten
 		str = (0..5).map { o[rand(o.length)] }.join
 		if self.slug.nil? == true || self.slug.blank? == true || self.slug.class != Integer
-			self.slug = str
+			self.slug = 'pro_'+str
 		end
 	end
 

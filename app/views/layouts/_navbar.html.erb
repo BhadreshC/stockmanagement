@@ -7,7 +7,7 @@
 			<%= link_to "Home", store_path(@store), class: "nav-link" %>
 		</li>
 		<li class="nav-item d-none d-sm-inline-block">
-			<%= link_to "New Product", store_path(@store), class: "nav-link" %>
+			<%= link_to 'New Product', new_store_product_path(@store.slug), class: "nav-link" %>
 		</li>
 		<li class="nav-item d-none d-sm-inline-block">
 			<%= link_to "Orders", store_path(@store), class: "nav-link" %>
